@@ -1,6 +1,6 @@
 # Carleton University Learning Management System (cuLearn) SDK
 
-* This SDK is made for Carleton students or staffs to access contents and data directly from their own applications/programs in purposes of testing and analyzing. 
+* This SDK is made for Carleton students or staffs to access cuLearn contents and data directly from their own applications/programs in purposes of testing and analyzing. 
 * For example, we can develop a dashboard that manages all courses and schedules in your own style, or a program that utilizes Tensorflow or other AI frameworks to evaluate the quality of our study and predict the grades in upcomming exams
 * Its a good opportunity for us to dig our own things in the university while using computer science knowledge
 
