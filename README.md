@@ -21,8 +21,8 @@ cuSDK.connect(login:{user1, pass1}, function(err, res){
     res.semesters.each(function(index, semester){
         console.log('[Overview]')
         console.log(`* There are ${semester.courses.length} courses in ${semester.title}`)
-        semester.courses.each(function(index, course){
-            console.log(`\t* [${course.title}]`)
+        semester.courses.each(function(course){
+            console.log(`\t* [${course.title}][${course.crn}]`)
             console.log(`\t  ${course.instructors}`)
             console.log(`\t  ${course.url}`)
             console.log(`\t  ${course.contacts}`)
