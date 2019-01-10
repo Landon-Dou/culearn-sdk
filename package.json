@@ -1,6 +1,6 @@
 {
   "name": "culearn-sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This SDK is made for Carleton students or staffs to access cuLearn contents and data directly from their own applications/programs in purposes of testing and analyzing",
   "main": "culearn-sdk.js",
   "scripts": {
