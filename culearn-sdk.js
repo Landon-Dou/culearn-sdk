@@ -85,4 +85,4 @@ function parseCookie(cookies) {
     return cookies[1].split(';')[0]
 }
 
-module.exports = connect(login, callback)
+module.exports = connect
