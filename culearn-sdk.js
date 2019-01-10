@@ -38,7 +38,7 @@ function retrieveData(cookie, callback) {
             let $ = cheerio.load(html)
 
             // Set 'cookie' to Cookie
-            output['cookie', cookie]
+            output['cookie'] = cookie
 
             // Set 'username' to Username
             let username = $('.logininfo').children().first()
