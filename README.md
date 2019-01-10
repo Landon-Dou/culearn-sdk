@@ -6,29 +6,45 @@
 * Take your own risks by using this sdk since the session cookie, cuLearn username and password (optional) are visible in codes. Do NOT share the codes with your cookie, username or password to others
 
 
+
+> Current Version : 0.1.0
+>
+> ​	Can retrieve semesters and any course's crn, title, url only. More features coming in the future
+
+
 ## Quick Start Example
 ```javascript
 var cuSDK = require('culearn-sdk')
 
-cuSDK.connect(login:{user1, pass1}, function(err, res){
-    if(err){
-        return console.error('[ERR] ' + err)
+cuSDK.connect({ username: 'your-username', password: 'your-password' }, function (err, res) {
+    if (err) {
+        return console.error(err)
     }
-    
-    console.log('Amount of Semesters: ' + res.semesters.length)
-    console.log('Amount of Courses: ' + res.courses.length)
-    
-    res.semesters.each(function(index, semester){
-        console.log('[Overview]')
-        console.log(`* There are ${semester.courses.length} courses in ${semester.title}`)
-        semester.courses.each(function(course){
-            console.log(`\t* [${course.title}][${course.crn}]`)
-            console.log(`\t  ${course.instructors}`)
-            console.log(`\t  ${course.url}`)
-            console.log(`\t  ${course.contacts}`)
-            console.log(`\t  ${course.grades.schema}`)	// Manually defined by user
-            console.log(`\t  ${course.grades.total}`)	// Calculated based on the schema
-        })
-    })
+
+    // Print out whole JSON object response
+    console.log(JSON.stringify(res))
+
+    // Get username
+    console.log(res.name)
+
+    // Get semesters' names
+    for (let semster of res.semesters) {
+        console.log(semster.title)
+    }
+
+    // Get all courses' names for all semester
+    for (let semester of res.semesters) {
+        for (let course of semester.courses) {
+            if (course.crn) {
+                console.log(`[${course.crn}][${course.title}][${course.url}]`)
+            } else {
+                console.log(`[N/A][${course.title}][${course.url}]`)
+            }
+        }
+    }
+
+    // Get cookie if you want to send cookie from your application, for example, to open a course site with one click after sending cookie to login directly
+    console.log(res.cookie)
+
 })
 ```
