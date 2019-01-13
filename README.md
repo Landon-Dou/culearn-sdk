@@ -7,44 +7,73 @@
 
 
 
-> Current Version : 0.1.0
+> **Current Version : 1.0.0**
 >
-> ​	Can retrieve semesters and any course's crn, title, url only. More features coming in the future
+> CUResponse
+>
+> | Properties or Functions | Type      |
+> | ----------------------- | --------- |
+> | username                | String    |
+> | cookie                  | String    |
+> | semesters               | Semesters |
+>
+> Semesters
+>
+> | Properties or Functions                                  | Type                      |
+> | -------------------------------------------------------- | ------------------------- |
+> | items                                                    | Array<Semester>           |
+> | length                                                   | Integer                   |
+> | add(item : Semester)                                     | Function => void          |
+> | get(index: Integer)                                      | Function => Semester      |
+> | remove(index: Integer)                                   | Function => Semester      |
+> | each(callback : (index: number, data: Semester) => void) | Callback Function => void |
+>
+> Courses
+>
+> | Properties or Functions                                | Type                      |
+> | ------------------------------------------------------ | ------------------------- |
+> | semester                                               | Semester                  |
+> | items                                                  | Array<Course>             |
+> | length                                                 | Integer                   |
+> | add(item : Course)                                     | Function => void          |
+> | get(index: Integer)                                    | Function => Course        |
+> | remove(index: Integer)                                 | Function => Course        |
+> | each(callback : (index: number, data: Course) => void) | Callback Function => void |
+>
+> Semester
+>
+> | Properties or Functions | Type    |
+> | ----------------------- | ------- |
+> | title                   | String  |
+> | term                    | String  |
+> | courses                 | Courses |
+>
+> Course
+>
+> | Properties or Functions | Type                             |
+> | ----------------------- | -------------------------------- |
+> | title                   | String                           |
+> | crn                     | Array<Integer>                   |
+> | url                     | String                           |
+> | instructors             | Array<String> **// In Progress** |
+> | content                 | Content **// In Progress**       |
+
 
 
 ## Quick Start Example
+
 ```javascript
 var cuSDK = require('culearn-sdk')
 
-cuSDK.connect({ username: 'your-username', password: 'your-password' }, function (err, res) {
-    if (err) {
+cuSDK.connect({username: 'your-username', password: 'your-password'}, function(err, res){
+    if(err){
         return console.error(err)
     }
-
-    // Print out whole JSON object response
-    console.log(JSON.stringify(res))
-
-    // Get username
-    console.log(res.name)
-
-    // Get semesters' names
-    for (let semster of res.semesters) {
-        console.log(semster.title)
-    }
-
-    // Get all courses' names for all semester
-    for (let semester of res.semesters) {
-        for (let course of semester.courses) {
-            if (course.crn) {
-                console.log(`[${course.crn}][${course.title}][${course.url}]`)
-            } else {
-                console.log(`[N/A][${course.title}][${course.url}]`)
-            }
-        }
-    }
-
-    // Get cookie if you want to send cookie from your application, for example, to open a course site with one click after sending cookie to login directly
-    console.log(res.cookie)
-
+    res.semesters.each(function(index, semester){
+        console.log(`# ${index} | ${semester.title} | ${semester.term} | ${semester.courses.length}`)
+        semester.courses.each(function(index, course){
+            console.log(`  * ${index} | ${course.title} | ${course.crn} | ${course.url}`)
+        })
+    })
 })
 ```
