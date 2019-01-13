@@ -1,17 +1,18 @@
 {
   "name": "culearn-sdk",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "This SDK is made for Carleton students or staffs to access cuLearn contents and data directly from their own applications/programs in purposes of testing and analyzing",
-  "main": "culearn-sdk.js",
+  "main": "lib/culearn-sdk.js",
+  "types": "lib/culearn-sdk.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Landon-Dou/culearn-sdk.git"
   },
   "keywords": [
-    "Carleton",
     "Carleton",
     "University",
     "Culearn"
